@@ -1,0 +1,13 @@
+.focus {
+  &:focus {
+    background-color: var(--mantine-color-grape-2);
+    color: var(--mantine-color-grape-5);
+  }
+}
+
+.focus-auto {
+  &:focus-visible {
+    background-color: var(--mantine-color-red-filled);
+    color: var(--mantine-color-grape-5);
+  }
+}
