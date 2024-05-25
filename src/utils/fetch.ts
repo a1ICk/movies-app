@@ -21,14 +21,14 @@ export const fetchMovies = async (params: MovieSearchParams) => {
     const ge = genres === undefined ? '' : `&with_genres=${genres}`;
     const sb = sort === undefined ? '' : `&sort_by=${sort}`;
 
-    const res = await fetch(URL + `api/movies/p/${Number(page) || 1}/${ry}${vg}${vl}${ge}${sb}`);
+    const res = await fetch(URL() + `api/movies/p/${Number(page) || 1}/${ry}${vg}${vl}${ge}${sb}`);
 
     if (res.ok) return await res.json();
     throw new Error(await res.text());
 }
 
 export const fetchGenres = async () => {
-    const res = await fetch(URL + 'api/genres');
+    const res = await fetch(URL() + 'api/genres');
 
     if (res.ok) {
         const { genres } = await res.json();
@@ -38,7 +38,7 @@ export const fetchGenres = async () => {
 }
 
 export const fetchMovie = async (movieId: number) => {
-    const res = await fetch(`${URL}api/movies/${movieId}`);
+    const res = await fetch(`${URL()}api/movies/${movieId}`);
 
     if (res.ok) return await res.json();
     throw new Error(await res.text());
@@ -49,7 +49,7 @@ export const fetchRatedMovies = async (movieIds: number[]) => {
 
     try {
         movieIds.forEach(async (id: number) => {
-            const res = await fetch(`${URL}api/movies/${id}`);
+            const res = await fetch(`${URL()}api/movies/${id}`);
             if (res.ok) {
                 const movie = await res.json();
 
